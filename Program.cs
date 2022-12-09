@@ -1,17 +1,23 @@
 ﻿/*
-Задача 23
+Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
 
-Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+3, 5 -> 243 (3⁵)
 
-3 -> 1, 8, 27
-5 -> 1, 8, 27, 64, 125
+2, 4 -> 16
 */
 
-int a;
-Console.Write($"Введите число: ");
-int.TryParse(Console.ReadLine()!, out a);
+int a, b;
+Console.Write($"Введите число A: ");
+int.TryParse(Console.ReadLine(), out a);
+Console.Write($"Введите число B: ");
+int.TryParse(Console.ReadLine(), out b);
 
-for (int i = 1; i <= a; i++)
+if (b == 0)
+    Console.WriteLine(1);
+else
 {
-    Console.Write($"{i * i * i} ");
+    int ans = a;
+    for (int i = 0; i < b - 1; i++)
+        ans *= a;
+    Console.WriteLine(ans);
 }
