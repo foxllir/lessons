@@ -7,7 +7,7 @@
 */
 
 int a;
-Console.Write($"ВВедите число: ");
+Console.Write($"Введите число: ");
 int.TryParse(Console.ReadLine()!, out a);
 
 if (a % 2 == 0)
