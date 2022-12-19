@@ -1,22 +1,26 @@
 ﻿/*
-Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
 
-[3 7 22 2 78] -> 76
+m = 3, n = 4.
+
+0,5 7 -2 -0,2
+
+1 -3,3 8 -9,9
+
+8 7,8 -7,1 9
 */
 
-double[] array = new double[5];
-for (int i = 0; i < array.Length; i++)
-    array[i] = new Random().Next(100) / 10.0;
+double[,] array = new double[5, 5];
 
-double max = array[0];
-double min = array[0];
+for (int i = 0; i < array.GetLength(0); i++)
+{
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+        array[i, j] = Math.Round(new Random().NextDouble() * 19 - 9.9, 1);
+        Console.Write($"{array[i, j]} ");
+    }
+    Console.WriteLine();
+}
 
-for (int i = 0; i < array.Length; i++)
-    if (array[i] > max)
-        max = array[1];
-    else if (array[i] < min)
-        min = array[i];
-
-for (int i = 0; i < array.Length; i++)
-    Console.Write($"{array[i]} ");
-Console.Write($"-> {max - min}");
+Console.WriteLine($"\n");
+for (int i = 0; i < array.GetLength(0); i++) ;
