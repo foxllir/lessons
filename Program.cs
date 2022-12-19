@@ -1,26 +1,36 @@
 ﻿/*
-Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
 
-m = 3, n = 4.
+Например, задан массив:
 
-0,5 7 -2 -0,2
+1 4 7 2
 
-1 -3,3 8 -9,9
+5 9 2 3
 
-8 7,8 -7,1 9
+8 4 2 4
+
+17 -> такого числа в массиве нет
 */
 
-double[,] array = new double[5, 5];
+int[,] array = new int[3, 3];
 
 for (int i = 0; i < array.GetLength(0); i++)
 {
     for (int j = 0; j < array.GetLength(1); j++)
     {
-        array[i, j] = Math.Round(new Random().NextDouble() * 19 - 9.9, 1);
+        array[i, j] = new Random().Next(10);
         Console.Write($"{array[i, j]} ");
     }
-    Console.WriteLine();
 }
+Console.WriteLine();
 
-Console.WriteLine($"\n");
-for (int i = 0; i < array.GetLength(0); i++) ;
+int iu, ju;
+Console.Write($"Введите i: ");
+int.TryParse(Console.ReadLine(), out iu);
+Console.Write($"Введите j: ");
+int.TryParse(Console.ReadLine(), out ju);
+
+if (iu >= 0 && iu < array.GetLength(0) && ju >= 0 && ju < array.GetLength(1))
+    Console.Write($"[{iu},{ju}] = {array[iu, ju]}");
+else
+    Console.Write($"Неверный ввод индексов");
