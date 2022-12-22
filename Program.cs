@@ -1,19 +1,41 @@
 ﻿/*
-Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
-m = 2, n = 3 -> A(m,n) = 9
-m = 3, n = 2 -> A(m,n) = 29
+Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+В итоге получается вот такой массив:
+7 4 2 1
+9 5 3 2
+8 4 4 2
 */
 
-int m = 3, n = 2;
-
-Console.Write($"{Accerman(m, n)}");
-
-int Accerman(int m, int n)
+int[,] array = new int[3, 4];
+for (int i = 0; i < array.GetLength(0); i++)
 {
-    if (m == 0)
-        return n + 1;
-    else if (n == 0)
-        return Accerman(m - 1, 1);
-    else
-        return Accerman(m - 1, Accerman(m, n - 1));
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+        array[i, j] = new Random().Next(10);
+        Console.Write($"{array[i, j]} ");
+    }
+    Console.WriteLine();
 }
+Console.WriteLine();
+
+for (int s = 0; s < array.GetLength(0); s++)
+{
+    for (int i = 0; i < array.GetLength(1); i++)
+    {
+        int k = array[s, i];
+        int j = i - 1;
+
+        while (j >= 0 && array[s, j] > k)
+        {
+            array[s, j + 1] = array[s, j];
+            array[s, j] = k;
+            j--;
+        }
+    }
+}
+
+for (int i = 0; i < array.GetLength(0); i++) ;
