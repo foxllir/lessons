@@ -1,28 +1,17 @@
 ﻿/*
-Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+Задача 64: Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
 
-Например, задан массив:
-1 4 7 2
-5 9 2 3
-8 4 2 4
-Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+N = 5 -> "5, 4, 3, 2, 1"
+N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
 */
 
-int[,] array = new int[3, 4] { { 1, 4, 7, 2 }, { 5, 9, 2, 3 }, { 8, 4, 2, 4 } };
+int n = 10;
 
-for (int i = 0; i < array.GetLength(0); i++)
-{
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-        Console.Write($"{array[i, j]} ");
-    }
-    Console.WriteLine();
-}
+Console.Write($"{PrintNums(n, 1)}");
 
-for (int j = 0; j < array.GetLength(1); j++)
+string PrintNums(int left, int right)
 {
-    int sum = 0;
-    for (int i = 0; i < array.GetLength(0); i++)
-        sum += array[i, j];
-    Console.Write($"{Math.Round((double)sum / array.GetLength(0), 1)} ");
+    if (left <= right)
+        return left.ToString();
+    return $"{left} {PrintNums(left - 1, right)}";
 }
