@@ -1,35 +1,39 @@
 ﻿/*
-Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-Например, даны 2 матрицы:
-2 4 | 3 4
-3 2 | 3 3
-Результирующая матрица будет:
-18 20
-15 18
+Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1)
 */
 
-int[,] a = new int[2, 2] { { 2, 4 }, { 3, 2 } };
-int[,] b = new int[2, 2] { { 3, 4 }, { 3, 3 } };
-int[,] c = new int[a.GetLength(0), b.GetLength(1)];
+int[,,] a = new int[2, 2, 2];
 
-for (int i = 0; i < c.GetLength(0); i++)
+int[] nums = new int[90];
+for (int i = 0; i < 90; i++)
+    nums[i] = i + 10;
+
+for (int i = 0; i < a.GetLength(0); i++)
 {
-    for (int j = 0; j < c.GetLength(1); j++)
+    for (int j = 0; j < a.GetLength(1); j++)
     {
-        int sum = 0;
-        for (int r = 0; r < a.GetLength(1); r++)
+        for (int l = 0; l < a.GetLength(2); l++)
         {
-            sum += a[i, r] * b[r, j];
+            int temp = new Random().Next(90);
+
+            while (nums[temp] == 0)
+                temp = new Random().Next(90);
+
+            a[i, j, l] = nums[temp];
+            nums[temp] = 0;
         }
-        c[i, j] = sum;
     }
 }
 
-for (int i = 0; i < c.GetLength(0); i++)
-{
-    for (int j = 0; j < c.GetLength(1); j++)
+for (int i = 0; i < a.GetLength(0); i++)
+    for (int j = 0; j < a.GetLength(1); j++)
     {
-        Console.Write($"{c[i, j]} ");
+        for (int l = 0; l < a.GetLength(2); l++)
+            Console.Write($"{a[i, j, l]}({i}, {j}, {l}) ");
+        Console.WriteLine();
     }
-    Console.WriteLine();
-}
